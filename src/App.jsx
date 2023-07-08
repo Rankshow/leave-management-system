@@ -1,6 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import {CloseCircleOutlined} from '@ant-design/icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
@@ -30,19 +33,21 @@ function App() {
             <td>Mark</td>
             <td>Otto</td>
             <td>@mdo</td>
-            <td>@mdo</td>
+            <td className='d-flex justify-content-around align-items-center'><CloseCircleOutlined className='text-danger'/><FontAwesomeIcon icon={faPenToSquare} /></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
+            <td className='d-flex justify-content-around align-items-center'><CloseCircleOutlined className='text-danger'/><FontAwesomeIcon icon={faPenToSquare} /></td>
           </tr>
           <tr>
             <td>3</td>
             <td>Larry the Bird</td>
             <td>@twitter</td>
             <td>@facebook</td>
+            <td className='d-flex justify-content-around align-items-center'><CloseCircleOutlined className='text-danger'/><FontAwesomeIcon icon={faPenToSquare} /></td>
           </tr>
         </tbody>
       </Table>
