@@ -18,7 +18,7 @@ const AddItem = () => {
         <label htmlFor="procurement">Procurement</label>
         <input
           type="text"
-          placeholder="Enter Procurement..."
+          placeholder="Enter Procurement..." 
           className="p-2 w-80 mb-5 border rounded-md border-green-500 outline-none"
         />
         <label htmlFor="Accounting">Procurement</label>

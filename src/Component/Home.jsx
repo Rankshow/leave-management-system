@@ -1,10 +1,10 @@
 import React from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-// import { Table, Container, Col, Row } from 'react-bootstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import {CloseCircleOutlined} from '@ant-design/icons';
-// import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import {CloseCircleOutlined} from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
+import {EyeOutlined} from '@ant-design/icons';
+
 
 
 const Home = () => {
@@ -22,6 +22,7 @@ const Home = () => {
           <th className='border border-spacing-1 py-2'>Name</th>
           <th className='border border-spacing-1 py-2'>Procurement</th>
           <th className='border border-spacing-1 py-2'>Accounting</th>
+          <th className='border border-spacing-1 py-2'>Action</th>
         </tr>
       </thead>
       <tbody className='py-2'>
@@ -29,16 +30,23 @@ const Home = () => {
           <td>The Sliding Mr. Bones </td>
           <td>Malcolm Lockyer</td>
           <td>1961</td>
+          <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button>
+          <button className='text-orange-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button>
+          </td>
         </tr>
         <tr className='text-center'>
           <td>Witchy Woman</td>
           <td>The Eagles</td>
           <td>1972</td>
+          <td><button className='text-red-600 font-bold text-2xl pb-2 hover:opacity-[.7]'><CloseCircleOutlined /></button><button className='text-green-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button>
+          <button className='text-orange-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button></td>
         </tr>
         <tr className='bg-gray-300 text-center'>
           <td>Shining Star</td>
           <td>Earth, Wind, and Fire</td>
           <td>1975</td>
+          <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button>
+          <button className='text-orange-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button></td>
         </tr>
       </tbody>
     </table>
