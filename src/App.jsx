@@ -3,6 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Component/Home';
 import About from './Component/About';
 import AddItem from './Component/AddItem';
+import View from './Component/View';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -11,10 +14,13 @@ function App() {
     <>
     <div>
        <Header />
+       <ToastContainer position='top-center'/>
          <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
             <Route path='/addItem' element={<AddItem />} />
+            <Route path='/update/:id' element={<AddItem />} />
+            <Route path='/view/:id' element={<View />} />
+            <Route path='/about' element={<About />} />
          </Routes>
      </div>
     </>

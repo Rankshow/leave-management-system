@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import {CloseCircleOutlined} from '@ant-design/icons';
@@ -8,6 +8,14 @@ import {EyeOutlined} from '@ant-design/icons';
 
 
 const Home = () => {
+  const value = {
+    name: "",
+    procurement: "",
+    accounting: ""
+  };
+
+  // state
+  const [data, setData] = useState(value);
   
   return(
     <>
@@ -30,7 +38,8 @@ const Home = () => {
           <td>The Sliding Mr. Bones </td>
           <td>Malcolm Lockyer</td>
           <td>1961</td>
-          <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button>
+          <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button>
+         <Link to="/addItem"><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button></Link> 
           <button className='text-orange-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button>
           </td>
         </tr>
@@ -38,14 +47,16 @@ const Home = () => {
           <td>Witchy Woman</td>
           <td>The Eagles</td>
           <td>1972</td>
-          <td><button className='text-red-600 font-bold text-2xl pb-2 hover:opacity-[.7]'><CloseCircleOutlined /></button><button className='text-green-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button>
+          <td><button className='text-red-600 font-bold text-2xl pb-2 hover:opacity-[.7]'><CloseCircleOutlined /></button>
+          <Link to="/addItem"><button className='text-green-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button></Link> 
           <button className='text-orange-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button></td>
         </tr>
         <tr className='bg-gray-300 text-center'>
           <td>Shining Star</td>
           <td>Earth, Wind, and Fire</td>
           <td>1975</td>
-          <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button>
+          <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button>
+          <Link to="/addItem"><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button></Link> 
           <button className='text-orange-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button></td>
         </tr>
       </tbody>
