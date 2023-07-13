@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database"
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyAwuTof5TpjwSwPHCxrHwAtp16Qz9FdI7w",
   authDomain: "leave-management-system-33333.firebaseapp.com",
@@ -13,4 +14,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app)
+export const db = getDatabase(app);

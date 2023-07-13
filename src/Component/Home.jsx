@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import {CloseCircleOutlined} from '@ant-design/icons';
@@ -8,14 +8,6 @@ import {EyeOutlined} from '@ant-design/icons';
 
 
 const Home = () => {
-  const value = {
-    name: "",
-    procurement: "",
-    accounting: ""
-  };
-
-  // state
-  const [data, setData] = useState(value);
   
   return(
     <>
@@ -29,32 +21,34 @@ const Home = () => {
         <tr>
           <th className='border border-spacing-1 py-2'>Name</th>
           <th className='border border-spacing-1 py-2'>Procurement</th>
-          <th className='border border-spacing-1 py-2'>Accounting</th>
+          <th className='border border-spacing-1 py-2'>Payment</th>
           <th className='border border-spacing-1 py-2'>Action</th>
         </tr>
       </thead>
       <tbody className='py-2'>
+
+
         <tr className='bg-gray-300 text-center'>
-          <td>The Sliding Mr. Bones </td>
-          <td>Malcolm Lockyer</td>
-          <td>1961</td>
+          <td>Mr. Bones </td>
+          <td>laptops</td>
+          <td>#130,000</td>
           <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button>
          <Link to="/addItem"><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button></Link> 
           <button className='text-orange-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button>
           </td>
         </tr>
         <tr className='text-center'>
-          <td>Witchy Woman</td>
-          <td>The Eagles</td>
-          <td>1972</td>
+          <td>Mrs belly</td>
+          <td>24" flat Tv</td>
+          <td>#50,000</td>
           <td><button className='text-red-600 font-bold text-2xl pb-2 hover:opacity-[.7]'><CloseCircleOutlined /></button>
           <Link to="/addItem"><button className='text-green-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button></Link> 
           <button className='text-orange-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button></td>
         </tr>
         <tr className='bg-gray-300 text-center'>
-          <td>Shining Star</td>
-          <td>Earth, Wind, and Fire</td>
-          <td>1975</td>
+          <td>Mr maculone</td>
+          <td>webcam</td>
+          <td>#25,000</td>
           <td><button className='text-red-600 font-bold text-2xl pb-1 hover:opacity-[.7]'><CloseCircleOutlined /></button>
           <Link to="/addItem"><button className='text-green-600 font-bold text-2xl pb-1 md:ml-3  hover:opacity-[.7]'><EditOutlined /></button></Link> 
           <button className='text-orange-600 font-bold text-2xl pb-2 md:ml-3  hover:opacity-[.7]'><EyeOutlined /></button></td>
