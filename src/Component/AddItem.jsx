@@ -1,87 +1,72 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ref, get, child } from "firebase/database";
 import { db } from "../Component/config/firebase"
 import { toast } from 'react-toastify';
 
 
 const AddItem = () => {
   // storing all state in one variable
-  const inputStates = {
-    name: "",
-    procurement: "",
-    payment: ""
-  }
+  const [name, setName] = useState("");
+  const [procurement, setProcurement] = useState("");
+  const [payment, setPayment] = useState("");
 
-  // state
-  const [data, setData] = useState(inputStates);
-  const [items, setItems] = useState({});
+
+
+  const navigate = useNavigate();
+
   
-  const {name, procurement, payment} = data;
-  
-  // const history = useHistory();
   // handleSubmit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  if(!name || !procurement || !payment){
-    toast.error("Please! provide value for the input field");
-  } else {
-    db.child("management").push(data, (err) => {
-      if(err) {
-        toast.error(err);
-      }else {
-        toast.success("Data added successfull🎉 !!");
-        // navigate("/");
-      }
-    });
-    // setTimeout(() => history.push("/"), 500);
-  }
-  }
-
-  // handleOnchange
-  const handleChange = (e) => {
-   const {name, value} = e.target;
-   setData({...data, [name]: value})
+    const dbRef = ref(db);
+   const {name, procurement, payment} = data;
+  
+    if(!name || !procurement || !payment){
+      toast.error("Please! provide value for the input field");
+    } else {
+    get(child(dbRef,"management/"));
+      toast.success("Data added successfully🎉 !!");
+      navigate("/");
+    }
   }
 
   return (
     <div className="flex justify-center pt-[5em]">
-      <form onSubmit={handleSubmit} className="flex flex-col h-screen font-bold">
+      <form  className="flex flex-col h-screen font-bold">
         {/* additem */}
         <h3 className="text-xl text-red-400 mb-2 text-center">
           Add Department
         </h3>
         <label htmlFor="name">Name</label>
         <input
-          onChange={handleChange}
-          value={name}
+          onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Enter name.."
           name="name"
-          className="p-2 w-80 mb-5 rounded-md border border-green-500 outline-none"
+          className="p-2 w-80 leading-8 mb-5 rounded-md border border-green-500 outline-none"
         />
         <label htmlFor="procurement">Procurement</label>
         <input
-          onChange={handleChange}
-          value={procurement}
+          onChange={(e) => setProcurement(e.target.value)}
           type="text"
           name="procurement"
           placeholder="Enter Procurement..." 
-          className="p-2 w-80 mb-5 border rounded-md border-green-500 outline-none"
+          className="p-2 w-80 mb-5 leading-8 border rounded-md border-green-500 outline-none"
         />
-        <label htmlFor="payment">Payemnt</label>
+        <label htmlFor="payment">Payment</label>
         <input
-          onChange={handleChange}
-          value={payment}
+          onChange={(e) => setPayment(e.target.value)}
           type="text"
           name="payment"
           placeholder="Enter Payment..."
           className="p-2 w-80 rounded-md border border-green-500 outline-none"
         />
         <div className="mt-3 flex justify-evenly">
-         <Link to="/"><button className="bg-red-500 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
+         <Link to="/"><button className="bg-red-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
             Cancel
           </button></Link> 
-          <button className="bg-green-500 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
+          <button onClick={handleSubmit} className="bg-green-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
             Submit
           </button>
         </div>
