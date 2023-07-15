@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 const AddItem = () => {
   // storing all state in one variable
   const [name, setName] = useState("");
-  const [procurement, setProcurement] = useState("");
-  const [payment, setPayment] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
 
 
 
@@ -20,9 +20,9 @@ const AddItem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dbRef = ref(db);
-   const {name, procurement, payment} = data;
+  //  const {name, procurement, payment} = data;
   
-    if(!name || !procurement || !payment){
+    if(!name || !email || !payment){
       toast.error("Please! provide value for the input field");
     } else {
     get(child(dbRef,"management/"));
@@ -46,20 +46,28 @@ const AddItem = () => {
           name="name"
           className="p-2 w-80 leading-8 mb-5 rounded-md border border-green-500 outline-none"
         />
-        <label htmlFor="procurement">Procurement</label>
+        <label htmlFor="email">Email</label>
         <input
-          onChange={(e) => setProcurement(e.target.value)}
-          type="text"
-          name="procurement"
-          placeholder="Enter Procurement..." 
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          name="email"
+          placeholder="Enter email..." 
           className="p-2 w-80 mb-5 leading-8 border rounded-md border-green-500 outline-none"
         />
-        <label htmlFor="payment">Payment</label>
+        <label htmlFor="PhoneNo">Phone No</label>
         <input
           onChange={(e) => setPayment(e.target.value)}
+          type="number"
+          name="PhoneNo"
+          placeholder="Enter phone..."
+          className="p-2 w-80 mb-5 rounded-md border border-green-500 outline-none"
+        />
+        <label htmlFor="LeaveType">Leave Type</label>
+        <input
+          onChange={(e) => setLeaveType(e.target.value)}
           type="text"
-          name="payment"
-          placeholder="Enter Payment..."
+          name="leaveType"
+          placeholder="Enter leave type..."
           className="p-2 w-80 rounded-md border border-green-500 outline-none"
         />
         <div className="mt-3 flex justify-evenly">
