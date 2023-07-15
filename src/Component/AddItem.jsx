@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ref, get, child } from "firebase/database";
+import { ref, set, child } from "firebase/database";
 import { db } from "../Component/config/firebase"
 import { toast } from 'react-toastify';
 
 
 const AddItem = () => {
-  // storing all state in one variable
+  // all states of all input.
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
-
-
-
+  const [leaveType, setLeaveType] = useState("");
   const navigate = useNavigate();
 
   
@@ -20,20 +18,23 @@ const AddItem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dbRef = ref(db);
-  //  const {name, procurement, payment} = data;
-  
-    if(!name || !email || !payment){
+
+    if(!name || !email || !phoneNo || !leaveType){
       toast.error("Please! provide value for the input field");
     } else {
-    get(child(dbRef,"management/"));
+    set(child(dbRef,"management/", {name, email, phoneNo, leaveType}));
       toast.success("Data added successfully🎉 !!");
       navigate("/");
+      setName(name);
+      setEmail(email);
+      setPhoneNo(phoneNo);
+      setLeaveType(leaveType);
     }
   }
 
   return (
     <div className="flex justify-center pt-[5em]">
-      <form  className="flex flex-col h-screen font-bold">
+      <form onSubmit={handleSubmit} className="flex flex-col h-screen font-bold">
         {/* additem */}
         <h3 className="text-xl text-red-400 mb-2 text-center">
           Add Department
@@ -56,11 +57,11 @@ const AddItem = () => {
         />
         <label htmlFor="PhoneNo">Phone No</label>
         <input
-          onChange={(e) => setPayment(e.target.value)}
+          onChange={(e) => setPhoneNo(e.target.value)}
           type="number"
           name="PhoneNo"
           placeholder="Enter phone..."
-          className="p-2 w-80 mb-5 rounded-md border border-green-500 outline-none"
+          className="p-2 w-80 mb-5 rounded-md leading-8 border border-green-500 outline-none"
         />
         <label htmlFor="LeaveType">Leave Type</label>
         <input
@@ -68,13 +69,13 @@ const AddItem = () => {
           type="text"
           name="leaveType"
           placeholder="Enter leave type..."
-          className="p-2 w-80 rounded-md border border-green-500 outline-none"
+          className="p-2 w-80 rounded-md leading-8 border border-green-500 outline-none"
         />
         <div className="mt-3 flex justify-evenly">
          <Link to="/"><button className="bg-red-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
             Cancel
           </button></Link> 
-          <button onClick={handleSubmit} className="bg-green-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
+          <button  className="bg-green-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
             Submit
           </button>
         </div>
