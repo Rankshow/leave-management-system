@@ -1,31 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { db} from "../Component/config/firebase"
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import Swal from 'sweetalert2';
-import { Link, useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
 // import { toast } from 'react-toastify';
 
 
-const AddItem = ({employees, setEmployees, setIsAdding}) => {
+const EditItem = ({employees, setEmployees, selectEmployee, setIsEditing}) => {
+  const id = selectEmployee.id
   // all states of all input.
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
-  const [leaveType, setLeaveType] = useState("");
-  const navigate = useNavigate();
-
-  const getEmployees = async () => {
-    const querySnapshot = await getDocs(collection,(db, "employees"));
-    const employees = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data}))
-    //  console.log(employees)
-     setEmployees(employees);
-    }
-
-      useEffect(() => {
-        getEmployees();
-        }, []);
+  const [name, setName] = useState(selectEmployee.name);
+  const [email, setEmail] = useState(selectEmployee.email);
+  const [phoneNo, setPhoneNo] = useState(selectEmployee.phoneNo);
+  const [leaveType, setLeaveType] = useState(selectEmployee.leaveType);
   
-  const handleAdd = async e => {
+  
+  const handleUpdate = async e => {
     e.preventDefault();
 
     if (!name || !phoneNo || !email || !leaveType) {
@@ -38,77 +27,68 @@ const AddItem = ({employees, setEmployees, setIsAdding}) => {
     }
 
     const newEmployee = {
+      id,
       name,
       email,
       phoneNo,
       leaveType,
     };
 
-    //  employees.bind(newEmployee);
+    employees.push(newEmployee);
     // TODO: Add doc to DB
     try {
        await addDoc(collection(db, "employees"), {
         ...newEmployee
       });
-      navigate("/")
     } catch (err) {
       console.log(err)
     }
     
 
-    
-    // setEmployees(employees);
-    // setIsAdding(false);
+
+    setEmployees(employees);
+    setIsAdding(false);
   //  NB: setIsAdding makes the popUp go away
 
     Swal.fire({
       icon: 'success',
       title: 'Added!',
-      text: `${name} ${email}'s data has been Added.`,
+      text: `${newEmployee.name} ${newEmployee.email}'s data has been Added.`,
       showConfirmButton: false,
       timer: 1500,
     });
   };
 
-  // // handleSubmit
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
 
-   
+
+
+  // // handleSubmit
+  // const handleUpdate = async (e) => {
+  //   e.preventDefault();
+  //   const newEmployee = {
+  //     name, 
+  //     email,
+  //     phoneNo, 
+  //     leaveType
+  //   };
+
   //   if(!name || !email || !phoneNo || !leaveType){
-  //     // toast.error("Please! provide value for the input field");
-  //     //   } else {
-  //     //     toast.success("Data added successfully🎉 !!");
-         
-  //         const newEmployee = {
-  //           name,
-  //           email,
-  //           phoneNo,
-  //           leaveType,
-  //         };
-  //         employees.push(newEmployee);
-  //         setEmployees(employees);
-  //         navigate("/")
-  //       }
-      
+  //     toast.error("Please! provide value for the input field");
+  //       } else {
+  //         toast.success("Data added successfully🎉 !!");
   //         // Todo: Add doc to DB
-  //         try {
-  //           await addDoc(collection(db, "employees"), {
-  //            ...newEmployee
-  //          });
-  //        } catch (err) {
-  //          console.log(err.message)
-  //        }
-          
+  //         // employees.push(newEmployee);
+  //         setEmployees(employees);
+  //       }
   //   }
 
 
   return (
     <div className="flex justify-center pt-[5em]">
-      <form onSubmit={() => setIsAdding(false)} className="flex flex-col h-screen font-bold">
+      <form onSubmit={() => setIsEditing(false)}  className="flex flex-col h-screen font-bold">
         {/* additem */}
         <h3 className="text-xl text-red-400 mb-2 text-center">
-          Add Employees
+          Edit Employees
         </h3>
         <label htmlFor="name">Name</label>
         <input
@@ -150,8 +130,8 @@ const AddItem = ({employees, setEmployees, setIsAdding}) => {
          <Link to="/"><button className="bg-red-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
             Cancel
           </button></Link> 
-          <button onClick={handleAdd} className="bg-green-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
-            Submit
+          <button  onClick={handleUpdate} className="bg-green-500 leading-8 px-4 py-1 rounded-md text-white hover:opacity-[.7]">
+            Update
           </button>
         </div>
       </form>
@@ -159,4 +139,4 @@ const AddItem = ({employees, setEmployees, setIsAdding}) => {
   );
 };
 
-export default AddItem;
+export default EditItem;

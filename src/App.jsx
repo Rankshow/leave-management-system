@@ -6,6 +6,7 @@ import AddItem from './Component/AddItem';
 import View from './Component/View';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EditItems from './Component/EditItems';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
          <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/addItem' element={<AddItem />} />
-            <Route path='/update/:id' element={<AddItem />} />
+            <Route path='/editItems' element={<EditItems />} />
             <Route path='/view/:id' element={<View />} />
             <Route path='/about' element={<About />} />
          </Routes>
