@@ -11,8 +11,8 @@ import EditItem from './EditItems';
 
 
 
-const Home = ({handleDelete, newEmployee, getEmployees}) => {
-   const [employees, setEmployees] = useState(newEmployee);
+const Home = ({handleDelete, newEmployee,  employeesData}) => {
+   const [employees, setEmployees] = useState(employeesData);
    console.log(employees);
    const [selectedEmployee, setSelectEmployee] = useState(null);
    const [isAdding, setIsAdding] = useState(false);
@@ -40,7 +40,7 @@ const Home = ({handleDelete, newEmployee, getEmployees}) => {
        { !isAdding && !isEditing &&(
         <Table 
          employees={employees}
-        
+         setEmployees={setEmployees}
          handleDelete={handleDelete}
         />
         )}{ isAdding &&(
@@ -51,7 +51,7 @@ const Home = ({handleDelete, newEmployee, getEmployees}) => {
           getEmployees={getEmployees}
           />
         )
-        } {isEditing && (
+        }{isEditing && (
           <EditItem
             employees={employees}
             selectedEmployee={selectedEmployee}
