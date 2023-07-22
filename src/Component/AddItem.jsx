@@ -17,7 +17,7 @@ const AddItem = ({employees, setEmployees, setIsAdding}) => {
   const getEmployees = async () => {
     const querySnapshot = await getDocs(collection,(db, "employees"));
     const employees = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data}))
-    //  console.log(employees)
+     console.log(employees)
      setEmployees(employees);
     }
 

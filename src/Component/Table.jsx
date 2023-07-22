@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {doc, deleteDoc} from "firebase/firestore"
 
-const Table = ({employees, setEmployees}) => {
+const Table = ({employees, setEmployees }) => {
+  // const id = selectEmployee.id
 
   const handleDelete = id => {
     Swal.fire({

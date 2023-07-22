@@ -43,8 +43,6 @@ const EditItem = ({employees, setEmployees, selectEmployee, setIsEditing}) => {
     } catch (err) {
       console.log(err)
     }
-    
-
 
     setEmployees(employees);
     setIsAdding(false);
@@ -58,9 +56,6 @@ const EditItem = ({employees, setEmployees, selectEmployee, setIsEditing}) => {
       timer: 1500,
     });
   };
-
-
-
 
   // // handleSubmit
   // const handleUpdate = async (e) => {
